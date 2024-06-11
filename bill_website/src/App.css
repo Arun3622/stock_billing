@@ -1,0 +1,44 @@
+.appbody {
+    background-color: rgb(231, 231, 231);
+}
+
+.row {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.inputbox {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    border: 10px solid;
+    border-width: 1px;
+    margin-left: 500px;
+    margin-right: 450px;
+}
+
+.date,
+.iteam,
+.expiry,
+.lotsize,
+.numberlot,
+.buyqty,
+.sell,
+.sellprice {
+    margin: 10px;
+}
+
+.submit {
+    display: flex;
+    justify-content: center;
+}
+
+.submit1 {
+    display: flex;
+    justify-content: center;
+}
+
+.text1 {
+    display: flex;
+    justify-content: center;
+}
