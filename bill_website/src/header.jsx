@@ -1,16 +1,17 @@
 import { Link } from "react-router-dom";
-import "./login.jsx";
 import "./header.css";
 
 function Header() {
   return (
     <div className="body">
       <div className="text">
-        <h2>Trading bill</h2>
+        <h2>Trading bill</h2> 
       </div>
       <div className="login1">
         <h2>
-          <a className="Live">Live</a>
+          <Link to="/live" className="Live">
+            Live
+          </Link>
         </h2>
         <h2>
           <Link to="/login" className="login">
