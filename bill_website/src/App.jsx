@@ -36,9 +36,7 @@ function App() {
               Sell price: <input name="" />
             </label>
             <div className="submit1">
-              <button className="submit">
-                submit
-              </button>
+              <button className="submit">submit</button>
             </div>
           </div>
         </div>
@@ -48,3 +46,5 @@ function App() {
 }
 
 export default App;
+
+
