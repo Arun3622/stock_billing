@@ -2,6 +2,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Cabin:ital,wght@0,400..700;1,400..700&display=swap');
 .body {
     background-color: rgb(100, 237, 249);
+    padding: 10px;
 }
 
 .text {
@@ -17,6 +18,7 @@
 
 .butten {
     display: flex;
+    flex-wrap: wrap;
 }
 
 .Person,
@@ -29,31 +31,15 @@
     font-optical-sizing: auto;
     background-color: black;
     color: white;
-}
-
-.Person,
-.Bill,
-.Ledgers,
-.Sentbill {
-    border-width: 1px;
-    border-style: solid;
-    padding: 5.5px;
-    margin-left: px;
-}
-
-.Person,
-.Bill,
-.Ledgers,
-.Sentbill {
-    margin-right: 15px;
+    margin: 5px;
+    padding: 5px;
 }
 
 .select-box {
-    display: flex;
-    width: 70px;
+    width: 100px;
     font-size: 14px;
     background-color: gray;
-    margin-left: 15px;
+    margin-left: 5px;
 }
 
 .login1 {
@@ -64,27 +50,53 @@
 .login {
     display: flex;
     justify-content: center;
-    margin-right: 50px;
+    margin-right: 10px;
     margin-top: -30px;
-    border: 10px solid;
-    border-width: 2px;
+    border: 2px solid;
     border-radius: 100px;
     width: 80px;
     text-decoration: none;
     color: black;
 }
 
+.Live {
+    display: flex;
+    justify-content: center;
+    border: 2px solid;
+    border-radius: 100px;
+    width: 80px;
+    text-decoration: none;
+    color: black;
+    margin-right: 10px;
+    margin-top: -30px;
+}
+
 .Home {
-    border: 10px solid;
-    border-width: 1px;
+    border: 1px solid;
     margin-right: 10px;
     display: flex;
     padding: 10px;
     background-color: black;
+    width: 45px;
+    height: 5px;
+    margin-top: 6px;
 }
 
 .Home1 {
     text-decoration: none;
     color: beige;
     font-family: "Cabin", sans-serif;
+    margin-top: -6px;
+}
+
+@media (max-width: 600px) {
+    .text {
+        font-size: large;
+    }
+    .select-box {
+        width: 70px;
+    }
+    .login {
+        width: 60px;
+    }
 }

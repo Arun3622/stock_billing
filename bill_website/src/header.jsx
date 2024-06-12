@@ -7,7 +7,8 @@ function header() {
         <h2>Trading bill</h2>
       </div>
       <div className="login1">
-        <h2><a href="#" className="login">login</a></h2>
+      <h2><a href="#" className="Live"> Live</a></h2>
+      <h2><a href="#" className="login">login</a></h2>
         </div>
       <div className="butten">
       <div className="Home">
