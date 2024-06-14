@@ -4,26 +4,25 @@ import protobuf from 'protobufjs';
 import { Buffer } from 'buffer/';
 
 const stockNames = [
-  "Asian Paints Ltd", "Britannia Industries Ltd", "Cipla Ltd", "Eicher Motors Ltd",
-  "Nestle India Ltd", "Grasim Industries Ltd", "Hero MotoCorp Ltd", "Hindalco Industries Ltd",
-  "Hindustan Unilever Ltd", "ITC Ltd", "Larsen & Toubro Ltd", "Mahindra & Mahindra Ltd",
-  "Reliance Industries Ltd", "Tata Consumer Products Ltd", "Tata Motors Ltd", "Tata Steel Ltd",
-  "Wipro Ltd", "Apollo Hospitals Enterprise Ltd", "Dr Reddys Laboratories Ltd", "Titan Company Ltd",
-  "State Bank of India", "Shriram Finance Ltd", "Bharat Petroleum Corporation Ltd", "Kotak Mahindra Bank Ltd",
-  "Infosys Ltd", "Bajaj Finance Ltd", "Adani Enterprises Ltd", "Sun Pharmaceuticals Industries Ltd",
-  "JSW Steel Ltd", "HDFC Bank Ltd", "Tata Consultancy Services Ltd", "ICICI Bank Ltd",
-  "Power Grid Corporation of India Ltd", "Maruti Suzuki India Ltd", "IndusInd Bank Ltd",
-  "Axis Bank Ltd", "HCL Technologies Ltd", "Oil & Natural Gas Corpn Ltd", "NTPC Ltd",
-  "Coal India Ltd", "Bharti Airtel Ltd", "Tech Mahindra Ltd", "LTIMindtree Ltd",
-  "Divis Laboratories Ltd", "Adani Ports & Special Economic Zone Ltd", "HDFC Life Insurance Company Ltd",
-  "SBI Life Insurance Company Ltd", "UltraTech Cement Ltd", "Bajaj Auto Ltd", "Bajaj Finserv Ltd"
+  "ASIANPAINT.NS", "BRITANNIA.NS", "CIPLA.NS", "EICHERMOT.NS", "NESTLEIND.NS", "GRASIM.NS", "HEROMOTOCO.NS", "HINDALCO.NS",
+  "HINDUNILVR.NS", "ITC.NS", "LT.NS", "M&M.NS", "RELIANCE.NS", 
+  "TATACONSUM.NS", "TATAMOTORS.NS", "TATASTEEL.NS", "WIPRO.NS",
+  "APOLLOHOSP.NS", "DRREDDY.NS", "TITAN.NS", "SBIN.NS", 
+  "SHRIRAMFIN.NS", "BPCL.NS", "KOTAKBANK.NS", "INFY.NS", 
+  "BAJFINANCE.NS", "ADANIENT.NS", "SUNPHARMA.NS", "JSWSTEEL.NS", 
+  "HDFCBANK.NS", "TCS.NS", "ICICIBANK.NS", "POWERGRID.NS", 
+  "MARUTI.NS", "INDUSINDBK.NS", "AXISBANK.NS", "HCLTECH.NS", 
+  "ONGC.NS", "NTPC.NS", "COALINDIA.NS", "BHARTIARTL.NS", 
+  "TECHM.NS", "LTIM.NS", "DIVISLAB.NS", "ADANIPORTS.NS", 
+  "HDFCLIFE.NS", "SBILIFE.NS", "ULTRACEMCO.NS", "BAJAJ-AUTO.NS", 
+  "BAJAJFINSV.NS","NFLX","CCL","ADBE","KAVL","D","^NSEBANK"
 ];
 
 function Live() {
-  const [currentStock, setCurrentStock] = useState(null);
+  const [currentStocks, setCurrentStocks] = useState({});
   const [stockInput, setStockInput] = useState('');
   const [suggestions, setSuggestions] = useState([]);
-  const [selectedStock, setSelectedStock] = useState('');
+  const [subscribedStocks, setSubscribedStocks] = useState([]);
 
   useEffect(() => {
     const ws = new WebSocket('wss://streamer.finance.yahoo.com');
@@ -33,9 +32,9 @@ function Live() {
 
       ws.onopen = function open() {
         console.log('connected');
-        if (selectedStock) {
+        if (subscribedStocks.length > 0) {
           ws.send(JSON.stringify({
-            subscribe: [selectedStock]
+            subscribe: subscribedStocks
           }));
         }
       };
@@ -47,14 +46,17 @@ function Live() {
       ws.onmessage = function incoming(message) {
         console.log('incoming message');
         const next = Yaticker.decode(new Buffer(message.data, 'base64'));
-        setCurrentStock(next);
+        setCurrentStocks(prevStocks => ({
+          ...prevStocks,
+          [next.id]: next
+        }));
       };
 
       return () => {
         ws.close();
       };
     });
-  }, [selectedStock]);
+  }, [subscribedStocks]);
 
   const handleInputChange = (event) => {
     const value = event.target.value;
@@ -73,13 +75,17 @@ function Live() {
     setStockInput(suggestion);
     setSuggestions([]);
     const stockSymbol = suggestion.split(' ')[0];
-    setSelectedStock(stockSymbol);
+    if (!subscribedStocks.includes(stockSymbol)) {
+      setSubscribedStocks([...subscribedStocks, stockSymbol]);
+    }
   };
 
   const handleSubmit = (event) => {
     event.preventDefault();
     const stockSymbol = stockInput.split(' ')[0];
-    setSelectedStock(stockSymbol);
+    if (!subscribedStocks.includes(stockSymbol)) {
+      setSubscribedStocks([...subscribedStocks, stockSymbol]);
+    }
   };
 
   return (
@@ -104,7 +110,14 @@ function Live() {
           ))}
         </ul>
       )}
-      {currentStock && <h2>Current Price: {currentStock.price}</h2>}
+      <div className="stock-container">
+        {Object.keys(currentStocks).map(stockId => (
+          <div key={stockId} className="stock-box">
+            <h2>{stockId}</h2>
+            <p>Current Price: {currentStocks[stockId].price.toFixed(2)}</p>
+          </div>
+        ))}
+      </div>
     </>
   );
 }
