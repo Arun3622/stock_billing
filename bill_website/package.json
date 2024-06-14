@@ -10,18 +10,10 @@
         "preview": "vite preview"
     },
     "dependencies": {
-        "axios": "^1.7.2",
-        "buffer": "^6.0.3",
-        "protobufjs": "^7.3.2",
         "react": "^18.2.0",
         "react-dom": "^18.2.0",
-<<<<<<< HEAD
-        "react-router-dom": "^6.23.1",
-        "yahoo-finance2": "^2.11.3"
-=======
         "react-icons": "^5.2.1",
         "react-router-dom": "^6.23.1"
->>>>>>> 02b8221cb69b5bc7434fb625a02b5ec4039f8329
     },
     "devDependencies": {
         "@types/react": "^18.2.66",
