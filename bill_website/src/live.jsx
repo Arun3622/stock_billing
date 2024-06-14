@@ -14,12 +14,12 @@ function Live() {
       ws.onopen = function open() {
         console.log('connected');
         ws.send(JSON.stringify({
-          subscribe: ['GME']
+          subscribe: ['TSL']
         }));
       };
 
       ws.onclose = function close() {
-        console.log('disconnected');
+        console.log('discoTSLActed');
       };
 
       ws.onmessage = function incoming(message) {
