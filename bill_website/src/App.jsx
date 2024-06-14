@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./App.css";
 import Header from "./header";
-
 function App() {
   // State to hold the current date
   const [currentDate, setCurrentDate] = useState("");
