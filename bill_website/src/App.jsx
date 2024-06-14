@@ -1,8 +1,19 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "./App.css";
 import Header from "./header";
 
 function App() {
+  // State to hold the current date
+  const [currentDate, setCurrentDate] = useState("");
+
+  // useEffect to set the current date on component mount
+  useEffect(() => {
+    const today = new Date();
+    // Format the date to YYYY-MM-DD as required by <input type="date">
+    const formattedDate = today.toISOString().substr(0, 10);
+    setCurrentDate(formattedDate);
+  }, []); // Empty dependency array ensures this effect runs only once on mount
+
   return (
     <div className="appbody">
       <Header />
@@ -13,7 +24,7 @@ function App() {
         <div className="inputbox">
           <div className="row">
             <label className="date">
-              Date: <input name="date" type="date" />
+              Date: <input name="date" type="date" value={currentDate} />
             </label>
             <label className="item">
               Item: <input name="item" type="text" />

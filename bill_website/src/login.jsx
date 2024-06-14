@@ -12,12 +12,12 @@ function Login() {
           <div className='line'>
             <h1>Login</h1>
             <div className='textbox'>
-              <label><input placeholder='Username' type="text" /></label><FaUser className='icon' />
+              <label><input placeholder='username'/></label><FaUser className='icon' />
             </div>
             <div className='textbox'>
-              <label><input placeholder='Password' type="password" /></label><FaLock className='icon' />
+              <label><input placeholder='password' /></label><FaLock className='icon' />
             </div>
-            <div className='checkbox'>
+            <div className='checkbox'>  
               <label>
                 <input type='checkbox' /> Remember me
               </label>
@@ -32,13 +32,13 @@ function Login() {
           <div className='line'>
             <h1>Register</h1>
             <div className='textbox'>
-              <label><input placeholder='Username' type="text" /></label><FaUser className='icon' />
+              <label><input placeholder='username'/></label><FaUser className='icon' />
             </div>
             <div className='textbox'>
-              <label><input placeholder='Email' type="email" /></label><FaUser className='icon' />
+              <label><input placeholder='email' /></label><FaUser className='icon' />
             </div>
             <div className='textbox'>
-              <label><input placeholder='Password' type="password" /></label><FaLock className='icon' />
+              <label><input placeholder='password' /></label><FaLock className='icon' />
             </div>
             <button className='buttonlogin' type='submit'>Register</button>
             <div className='register'>
