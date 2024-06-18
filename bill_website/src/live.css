@@ -1,3 +1,5 @@
+/* Reset and global styles */
+
 body {
     font-family: Arial, sans-serif;
     background-color: #f5f5f5;
@@ -5,11 +7,17 @@ body {
     padding: 0;
 }
 
+
+/* Header styles */
+
 h1 {
     color: #333;
     text-align: center;
     margin-top: 20px;
 }
+
+
+/* Form styles */
 
 form {
     display: flex;
@@ -29,6 +37,9 @@ input[type="text"] {
     border: 1px solid #ccc;
     border-radius: 4px;
     width: 300px;
+    /* Adjust width for desktop */
+    max-width: 100%;
+    /* Ensure input takes full width on smaller screens */
     margin-right: 10px;
 }
 
@@ -45,6 +56,9 @@ button {
 button:hover {
     background-color: #0056b3;
 }
+
+
+/* Search results list styles */
 
 ul {
     list-style-type: none;
@@ -70,10 +84,15 @@ li:last-child {
     border-bottom: none;
 }
 
-h2 {
+
+/* Stock box styles */
+
+h4 {
     text-align: center;
     color: #333;
-    margin-top: 20px;
+    margin-top: 10px;
+    font-size: 14px;
+    /* Adjusted font size for stock symbols */
 }
 
 .stock-container {
@@ -89,7 +108,25 @@ h2 {
     border-radius: 4px;
     padding: 10px;
     margin: 10px;
-    width: 200px;
+    width: 113px;
+    /* Adjusted width for desktop */
+    max-width: calc(50% - 20px);
+    /* Two columns on larger screens */
     text-align: center;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+@media (max-width: 767px) {
+    /* Mobile devices */
+    input[type="text"] {
+        width: 100%;
+        /* Full width on smaller screens */
+    }
+    .stock-box {
+        width: calc(100% - 20px);
+        /* Full width for mobile with margin */
+        max-width: calc(100% - 20px);
+        margin: 10px;
+        /* Adjusted margin for mobile */
+    }
 }
